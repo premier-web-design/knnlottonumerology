@@ -8,7 +8,7 @@ This project requires:
 * PHP 7
 	
 ## Setup
-For this script to work simply download the repo and run composer. The script meeds to be run as a background task or if you are on your localhost click on the cron.bat file to run the script with the cli (you will need to edit the path to php and the path to the ml.php file to get it to work.
+For this script to work simply download the repo and run composer. The script needs to be run as a background task or if you are on your localhost click on the cron.bat file to run the script with the cli (you will need to edit the path to php and the path to the ml.php file to get it to work.
 
 ## Attributions
 * [Data](http://lottery.merseyworld.com/)
