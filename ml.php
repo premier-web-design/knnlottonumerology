@@ -151,8 +151,8 @@ $monthly[] = array('Month' => $month,'Numbers' => $_check[1]);
 }
 /* Save to File */
 $date = date('Y-m-d');
-unlink(dirname(__FILE__) . '/' . $date . '.txt');
-(new Lotto)->logToFile(dirname(__FILE__) . '/' . $date . '.txt',json_encode($monthly));
+unlink(dirname(__FILE__) . '/files/' . $date . '.txt');
+(new Lotto)->logToFile(dirname(__FILE__) . '/files/' . $date . '.json',json_encode($monthly));
 
 /* Create Lotto Predictions Using Numerology*/
 $monthly = array();
@@ -168,6 +168,6 @@ $monthly[] = array('Month' => $month,'Numbers' => $_check[1]);
 }
 /* Save to File */
 $date = date('Y-m-d');
-unlink(dirname(__FILE__) . '/' . $date . '-numerology.txt');
-(new Lotto)->logToFile(dirname(__FILE__) . '/' . $date . '-numerology.txt',json_encode($monthly));
+unlink(dirname(__FILE__) . '/files/' . $date . '-numerology.txt');
+(new Lotto)->logToFile(dirname(__FILE__) . '/files/' . $date . '-numerology.json',json_encode($monthly));
 ?>
