@@ -1,6 +1,6 @@
 # Lottery Number Predictor
 ## General info
-A simple machine learning based program that uses numerology and lottery draw data from the last 27 years to generate predictions on future lottery draws.
+A simple machine learning based program that uses numerology and lottery draw data from the last 27 years to generate predictions on future lottery draws. Just updated to include predictions for Thunderball.
 	
 ## Dependancies
 This project requires:
@@ -8,7 +8,9 @@ This project requires:
 * PHP 7
 	
 ## Setup
-For this script to work simply download the repo and run composer. The script needs to be run as a background task or if you are on your localhost click on the cron.bat file to run the script with the cli (you will need to edit the path to php and the path to the ml.php file to get it to work.
+For this script to work simply download the repo and run composer. The script needs to be exceuted as a background task or if you are working with your localhost (i.e. xampp) click on the cron.bat file to run the script with the cli (you will need to edit the path to php and the path to the ml.php file to get it to work.
+
+To view the results after executing just open the parser.php file in your browser and the results for the current month will be displayed along with the most likely numbers to arise in the draws.
 
 ## Attributions
 * [Data](http://lottery.merseyworld.com/)
