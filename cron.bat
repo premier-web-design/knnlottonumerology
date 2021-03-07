@@ -1,1 +1,1 @@
-c:\xampp\php\php.exe c:\xampp\htdocs\knnlottonumerology\ml.php
+c:\xampp\php\php.exe c:\xampp\htdocs\knn\ml.php

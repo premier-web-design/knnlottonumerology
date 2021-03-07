@@ -2,17 +2,21 @@
 class Parser{
 	public $predictionscsv;
 	public $numredictionscsv;
+	public $europredictionscsv;
+	public $euronumredictionscsv;
 	public $thunderpredictionscsv;
 	public $numthunderpredictionscsv;
 	function __construct(){
 		$this->predictionscsv = dirname(__FILE__) . '/files/' . date('Y-m-d') . '.json';
 		$this->numpredictionscsv = dirname(__FILE__) . '/files/' . date('Y-m-d') . '-numerology.json';
+		$this->europredictionscsv = dirname(__FILE__) . '/files/euro/' . date('Y-m-d') . '.json';
+		$this->euronumpredictionscsv = dirname(__FILE__) . '/files/euro/' . date('Y-m-d') . '-numerology-euro.json';
 		$this->thunderpredictionscsv = dirname(__FILE__) . '/files/thunder/' . date('Y-m-d') . '.json';
 		$this->numthunderpredictionscsv = dirname(__FILE__) . '/files/thunder/' . date('Y-m-d') . '-numerology-thunder.json';
 	
 	}
-	public function parsecsv($file){
-		print $file . '<br>';
+	public function parsecsv($file,$name){
+		print $name . '<br>';
 		if(file_exists($file)){
 			
 			 $filem = $file;
@@ -55,8 +59,10 @@ class Parser{
     print '</pre>';
     }
 }
-(new Parser)->parsecsv((new Parser)->predictionscsv);
-(new Parser)->parsecsv((new Parser)->numpredictionscsv);
-(new Parser)->parsecsv((new Parser)->thunderpredictionscsv);
-(new Parser)->parsecsv((new Parser)->numthunderpredictionscsv);
+(new Parser)->parsecsv((new Parser)->predictionscsv,'Lotto');
+(new Parser)->parsecsv((new Parser)->numpredictionscsv,'Lotto Numerology');
+(new Parser)->parsecsv((new Parser)->thunderpredictionscsv,'Thunderball');
+(new Parser)->parsecsv((new Parser)->numthunderpredictionscsv,'Thunderball Numerology');
+(new Parser)->parsecsv((new Parser)->europredictionscsv,'Euro Millions');
+(new Parser)->parsecsv((new Parser)->euronumpredictionscsv,'Euro Millions Numerology');
 ?>

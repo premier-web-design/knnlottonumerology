@@ -4,13 +4,15 @@ use Phpml\Classification\KNearestNeighbors;
 class Lotto{
 	private $csv;
 	private $thunderballcsv;
+	private $eurocsv;
 	private $numbers;
 	private $months;
 	private $abbrmonths;
 	private $drawmonth;
 	function __construct(){
-		$this->csv = dirname(__FILE__) . '/csv/newlottoresults.csv';
-		$this->thunderballcsv = dirname(__FILE__) . '/csv/thunderballresults.csv';
+		$this->csv = dirname(__FILE__) . DIRECTORY_SEPARATOR .'csv' .DIRECTORY_SEPARATOR . 'newlottoresults.csv';
+		$this->eurocsv = dirname(__FILE__) . DIRECTORY_SEPARATOR .'csv' .DIRECTORY_SEPARATOR . 'euromillions.csv';
+		$this->thunderballcsv = dirname(__FILE__) . DIRECTORY_SEPARATOR .'csv' . DIRECTORY_SEPARATOR . 'thunderballresults.csv';
 		$this->numbers = array('A' => 1,'B' => 2,'C' => 3,'D' => 4,'E' => 5,'F' => 8,'G' => 3,'H' => 5,'I' => 1,'J' => 1,'K' => 2,'L' => 3,'M' => 4,'N' => 5,'O' => 7,'P' => 8,'Q' => 1,'R' => 2,'S' => 3,'T' => 4,'U' => 6,'V' => 6,'W' => 6,'X' => 5,'Y' => 1,'Z' => 7);
 		$this->months = array('JANUARY','FEBUARY','MARCH','APRIL','MAY','JUNE','JULY','AUGUST','SEPTEMBER','OCTOBER','NOVEMBER','DECEMBER');
 		$this->abbrmonths = array('Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec');
@@ -25,6 +27,26 @@ class Lotto{
 		$lotto = array();
 		$_lotto = array();
 		while($i < 59){
+		$number = $i + 1;
+		$numero = $this->numerology($this->months[$key]);
+		$_lotto[] = array($numero,$number);
+		$lotto[] = array($month,$number);
+		$i++;
+		}
+		$export[] = $lotto;
+		$_export[] = $_lotto;
+		}
+		return array($export,$_export);
+	}
+	public function parseeurofile(){
+		$drawmonth = $this->drawmonth;
+		$export = array();
+		$_export = array();
+		foreach($drawmonth as $key => $month){
+		$i = 0;
+		$lotto = array();
+		$_lotto = array();
+		while($i < 50){
 		$number = $i + 1;
 		$numero = $this->numerology($this->months[$key]);
 		$_lotto[] = array($numero,$number);
@@ -73,6 +95,7 @@ class Lotto{
 		$csv = array_map('str_getcsv',file($this->csv));
 			foreach($csv as $key => $parts){
 				//if($key < 5){
+				if(isset($parts[1])){
 				$day = trim($parts[1]);
 				if($day == 'Wed'){$day = 'WEDNESDAY';}
 				if($day == 'Sat'){$day = 'SATURDAY';}
@@ -126,7 +149,78 @@ class Lotto{
 				}
 				
 				}
-		//	}
+		    }
+			}
+			/* Losing Numbers */
+			
+			return array($array,$results,$_array);
+	}
+	public function eurotrain(){
+		$array = array();
+		$_array = array();
+		$results = array();
+		$csv = array_map('str_getcsv',file($this->eurocsv));
+			foreach($csv as $key => $parts){
+				//if($key < 5){
+				if(isset($parts[1])){
+				$day = trim($parts[1]);
+				if($day == 'Fri'){$day = 'FRIDAY';}
+				if($day == 'Tue'){$day = 'TUESDAY';}
+				$date = $parts[2];
+				$month = $parts[3];
+				$year = $parts[4];
+				$one = $parts[5];
+				$two = $parts[6];
+				$three = $parts[7];
+				$four = $parts[8];
+				$five = $parts[9];
+				$six = $parts[10];
+			    $bonus = $parts[11];	
+				$seven = $parts[12];
+				$k = array_search($month,$this->abbrmonths);
+				$month = $this->months[$k];
+			    $_monthval = $this->numerology($month);
+				$monthval = $k + 1;
+		     	$yearval = $parts[4];
+				if(($day == 'FRIDAY') || ($day == 'TUESDAY')){
+				$array[] = array($monthval,$parts[5]);
+				$array[] = array($monthval,$parts[6]);
+				$array[] = array($monthval,$parts[7]);
+				$array[] = array($monthval,$parts[8]);
+				$array[] = array($monthval,$parts[9]);
+				$array[] = array($monthval,$parts[10]);
+				$array[] = array($monthval,$parts[11]);
+				$array[] = array($monthval,$parts[12]);
+				$_array[] = array($_monthval,$parts[5]);
+				$_array[] = array($_monthval,$parts[6]);
+				$_array[] = array($_monthval,$parts[7]);
+				$_array[] = array($_monthval,$parts[8]);
+				$_array[] = array($_monthval,$parts[9]);
+				$_array[] = array($_monthval,$parts[10]);
+				$_array[] = array($_monthval,$parts[11]);
+				$_array[] = array($_monthval,$parts[12]);
+				$results[] = 'Win';
+				$results[] = 'Win';
+				$results[] = 'Win';
+				$results[] = 'Win';
+				$results[] = 'Win';
+				$results[] = 'Win';
+				$results[] = 'Win';
+				$results[] = 'Win';
+				$all = array($parts[5],$parts[6],$parts[7],$parts[8],$parts[9],$parts[10],$parts[11],$parts[12]);
+				$i = 0;
+				while($i < 50){
+				$number  = 	$i + 1;
+				if(!in_array($number,$all)){
+				$array[] = array($monthval,$number);
+				$_array[] = array($_monthval,$number);
+				$results[] = 'Lose';
+				}
+				$i++;
+				}
+				
+				}
+		    }
 			}
 			/* Losing Numbers */
 			
@@ -139,6 +233,7 @@ class Lotto{
 		$csv = array_map('str_getcsv',file($this->thunderballcsv));
 			foreach($csv as $key => $parts){
 				//if($key < 5){
+				if(isset($parts[1])){
 				$day = trim($parts[1]);
 				if($day == 'Wed'){$day = 'WEDNESDAY';}
 				if($day == 'Sat'){$day = 'SATURDAY';}
@@ -190,7 +285,7 @@ class Lotto{
 				}
 				
 				}
-		//	}
+		     }
 			}
 			/* Losing Numbers */
 			
@@ -237,10 +332,10 @@ $monthly[] = array('Month' => $month,'Numbers' => $_check[1]);
 }
 /* Save to File */
 $date = date('Y-m-d');
-unlink(dirname(__FILE__) . '/files/' . $date . '.json');
-(new Lotto)->logToFile(dirname(__FILE__) . '/files/' . $date . '.json',json_encode($monthly));
+unlink(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'files' . DIRECTORY_SEPARATOR . $date . '.json');
+(new Lotto)->logToFile(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'files' . DIRECTORY_SEPARATOR . $date . '.json',json_encode($monthly));
 
-/* Create Lotto Predictions Using Numerology*/
+/* Create Lotto Predictions Using Numerology */
 $monthly = array();
 foreach($lotto[1] as $key => $check){
 foreach($check as $k => $_check){
@@ -254,9 +349,10 @@ $monthly[] = array('Month' => $month,'Numbers' => $_check[1]);
 }
 /* Save to File */
 $date = date('Y-m-d');
-unlink(dirname(__FILE__) . '/files/' . $date . '-numerology.json');
-(new Lotto)->logToFile(dirname(__FILE__) . '/files/' . $date . '-numerology.json',json_encode($monthly));
-/* THunder Data */
+unlink(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'files' . DIRECTORY_SEPARATOR . $date . '-numerology.json');
+(new Lotto)->logToFile(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'files' . DIRECTORY_SEPARATOR  . $date . '-numerology.json',json_encode($monthly));
+
+/* Thunder Data */
 $tensor = (new Lotto)->thundertrain();
 $lotto = (new Lotto)->parsethunderfile();
 /* Train */
@@ -276,10 +372,10 @@ $monthly[] = array('Month' => $month,'Numbers' => $_check[1]);
 }
 /* Save to File */
 $date = date('Y-m-d');
-unlink(dirname(__FILE__) . '/files/thunder/' . $date . 'thunder.json');
-(new Lotto)->logToFile(dirname(__FILE__) . '/files/thunder/' . $date . '.json',json_encode($monthly));
+unlink(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'files' . DIRECTORY_SEPARATOR . 'thunder' . DIRECTORY_SEPARATOR . $date . 'thunder.json');
+(new Lotto)->logToFile(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'files' . DIRECTORY_SEPARATOR . 'thunder' . DIRECTORY_SEPARATOR . $date . '.json',json_encode($monthly));
 
-/* Create Lotto Predictions Using Numerology*/
+/* Create Lotto Predictions Using Numerology */
 $monthly = array();
 foreach($lotto[1] as $key => $check){
 foreach($check as $k => $_check){
@@ -293,6 +389,46 @@ $monthly[] = array('Month' => $month,'Numbers' => $_check[1]);
 }
 /* Save to File */
 $date = date('Y-m-d');
-unlink(dirname(__FILE__) . '/files/thunder/' . $date . '-numerology-thunder.json');
-(new Lotto)->logToFile(dirname(__FILE__) . '/files/thunder/' . $date . '-numerology-thunder.json',json_encode($monthly));
+unlink(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'files' . DIRECTORY_SEPARATOR . 'thunder' . DIRECTORY_SEPARATOR . $date . '-numerology-thunder.json');
+(new Lotto)->logToFile(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'files' . DIRECTORY_SEPARATOR . 'thunder' . DIRECTORY_SEPARATOR . $date . '-numerology-thunder.json',json_encode($monthly));
+
+/* Euro Data */
+$tensor = (new Lotto)->eurotrain();
+$lotto = (new Lotto)->parseeurofile();
+/* Train */
+$classifier = new KNearestNeighbors();
+$classifier->train($tensor[0],$tensor[1]);
+/* Create Lotto Predictions */
+$monthly = array();
+foreach($lotto[0] as $key => $check){
+foreach($check as $k => $_check){
+$input = array($_check[0],$_check[1]);
+$nkpred = $classifier->predict($input);
+if($nkpred == 'Win'){
+$month = $key + 1;
+$monthly[] = array('Month' => $month,'Numbers' => $_check[1]);
+}
+}
+}
+/* Save to File */
+$date = date('Y-m-d');
+unlink(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'files' . DIRECTORY_SEPARATOR . 'euro' . DIRECTORY_SEPARATOR . $date . 'euro.json');
+(new Lotto)->logToFile(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'files' . DIRECTORY_SEPARATOR . 'euro' . DIRECTORY_SEPARATOR . $date . '.json',json_encode($monthly));
+
+/* Create Lotto Predictions Using Numerology */
+$monthly = array();
+foreach($lotto[1] as $key => $check){
+foreach($check as $k => $_check){
+$input = array($_check[0],$_check[1]);
+$nkpred = $classifier->predict($input);
+if($nkpred == 'Win'){
+$month = $key + 1;
+$monthly[] = array('Month' => $month,'Numbers' => $_check[1]);
+}
+}
+}
+/* Save to File */
+$date = date('Y-m-d');
+unlink(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'files' . DIRECTORY_SEPARATOR . 'euro' . DIRECTORY_SEPARATOR . $date . '-numerology-euro.json');
+(new Lotto)->logToFile(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'files' . DIRECTORY_SEPARATOR . 'euro' . DIRECTORY_SEPARATOR . $date . '-numerology-euro.json',json_encode($monthly));
 ?>
