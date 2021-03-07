@@ -14,7 +14,9 @@ To view the results after executing just open the parser.php file in your browse
 
 ##Track Record
 Saturday 27th Feb - Two Numbers (Lotto)
+
 Saturday 6th March - Three Numbers (Lotto)
+
 Saturday 6th March - Three NUmbers (Thunderball)
 
 ## Attributions
