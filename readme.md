@@ -13,11 +13,12 @@ For this script to work simply download the repo and run composer. The script ne
 To view the results after executing just open the parser.php file in your browser and the results for the current month will be displayed along with the most likely numbers to arise in the draws.
 
 ##Track Record
+
 Saturday 27th Feb - Two Numbers (Lotto)
 
 Saturday 6th March - Three Numbers (Lotto)
 
-Saturday 6th March - Three NUmbers (Thunderball)
+Saturday 6th March - Three Numbers (Thunderball)
 
 ## Attributions
 * [Data](http://lottery.merseyworld.com/)
