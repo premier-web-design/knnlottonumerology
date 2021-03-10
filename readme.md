@@ -15,9 +15,15 @@ To view the results after executing just open the parser.php file in your browse
 ## Track Record
 Saturday 27th Feb - Two Numbers (Lotto)
 
-Saturday 6th March - Three Numbers (Lotto)
+Saturday 6th March - Two Numbers (Lotto)
 
-Saturday 6th March - Three Numbers (Thunderball)
+Saturday 6th March - Two Numbers (Thunderball)
+
+## Notes
+
+The predictions are determined as much by the time complexity of the data as well as they are the spatial complexity. If the same datasets are run at different times, different numbers are predicted. 
+
+For example a run of the software on Saturday morning predicted two numbers in each draw, however a run of the same software on Sunday morning predicted three numbers in each draw, thi is even though the inputted datasets were the same. The only component that had changed was the element relating to time comlpexity.
 
 ## Attributions
 * [Data](http://lottery.merseyworld.com/)

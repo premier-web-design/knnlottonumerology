@@ -332,7 +332,9 @@ $monthly[] = array('Month' => $month,'Numbers' => $_check[1]);
 }
 /* Save to File */
 $date = date('Y-m-d');
+if(file_exists(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'files' . DIRECTORY_SEPARATOR . $date . '.json')){
 unlink(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'files' . DIRECTORY_SEPARATOR . $date . '.json');
+}
 (new Lotto)->logToFile(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'files' . DIRECTORY_SEPARATOR . $date . '.json',json_encode($monthly));
 
 /* Create Lotto Predictions Using Numerology */
@@ -349,7 +351,9 @@ $monthly[] = array('Month' => $month,'Numbers' => $_check[1]);
 }
 /* Save to File */
 $date = date('Y-m-d');
+if(file_exists(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'files' . DIRECTORY_SEPARATOR . $date . '-numerology.json')){
 unlink(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'files' . DIRECTORY_SEPARATOR . $date . '-numerology.json');
+}
 (new Lotto)->logToFile(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'files' . DIRECTORY_SEPARATOR  . $date . '-numerology.json',json_encode($monthly));
 
 /* Thunder Data */
@@ -372,7 +376,9 @@ $monthly[] = array('Month' => $month,'Numbers' => $_check[1]);
 }
 /* Save to File */
 $date = date('Y-m-d');
+if(file_exists(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'files' . DIRECTORY_SEPARATOR . 'thunder' . DIRECTORY_SEPARATOR . $date . 'thunder.json')){
 unlink(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'files' . DIRECTORY_SEPARATOR . 'thunder' . DIRECTORY_SEPARATOR . $date . 'thunder.json');
+}
 (new Lotto)->logToFile(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'files' . DIRECTORY_SEPARATOR . 'thunder' . DIRECTORY_SEPARATOR . $date . '.json',json_encode($monthly));
 
 /* Create Lotto Predictions Using Numerology */
@@ -389,7 +395,9 @@ $monthly[] = array('Month' => $month,'Numbers' => $_check[1]);
 }
 /* Save to File */
 $date = date('Y-m-d');
+if(file_exists(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'files' . DIRECTORY_SEPARATOR . 'thunder' . DIRECTORY_SEPARATOR . $date . '-numerology-thunder.json')){
 unlink(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'files' . DIRECTORY_SEPARATOR . 'thunder' . DIRECTORY_SEPARATOR . $date . '-numerology-thunder.json');
+}
 (new Lotto)->logToFile(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'files' . DIRECTORY_SEPARATOR . 'thunder' . DIRECTORY_SEPARATOR . $date . '-numerology-thunder.json',json_encode($monthly));
 
 /* Euro Data */
@@ -412,7 +420,9 @@ $monthly[] = array('Month' => $month,'Numbers' => $_check[1]);
 }
 /* Save to File */
 $date = date('Y-m-d');
+if(file_exists(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'files' . DIRECTORY_SEPARATOR . 'euro' . DIRECTORY_SEPARATOR . $date . 'euro.json')){
 unlink(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'files' . DIRECTORY_SEPARATOR . 'euro' . DIRECTORY_SEPARATOR . $date . 'euro.json');
+}
 (new Lotto)->logToFile(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'files' . DIRECTORY_SEPARATOR . 'euro' . DIRECTORY_SEPARATOR . $date . '.json',json_encode($monthly));
 
 /* Create Lotto Predictions Using Numerology */
@@ -429,6 +439,8 @@ $monthly[] = array('Month' => $month,'Numbers' => $_check[1]);
 }
 /* Save to File */
 $date = date('Y-m-d');
+if(file_exists(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'files' . DIRECTORY_SEPARATOR . 'euro' . DIRECTORY_SEPARATOR . $date . '-numerology-euro.json')){
 unlink(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'files' . DIRECTORY_SEPARATOR . 'euro' . DIRECTORY_SEPARATOR . $date . '-numerology-euro.json');
+}
 (new Lotto)->logToFile(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'files' . DIRECTORY_SEPARATOR . 'euro' . DIRECTORY_SEPARATOR . $date . '-numerology-euro.json',json_encode($monthly));
 ?>
